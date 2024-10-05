@@ -12,34 +12,49 @@ public class EnemyController : MonoBehaviour
 
     [Header("Aggro")]
     [SerializeField] float aggroTriggerRadius;
+    [SerializeField] float attackRange;
     public float swarmRadius;
     [SerializeField] GameObject swarm;
     bool isAggroed = false;
     bool isSwarmed = false;
+    bool isExploding = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
     }
 
     void FixedUpdate()
     {
+        
+
         float distance = Vector2.Distance(transform.position, character.position);
 
-        if (distance <= aggroTriggerRadius + Random.Range(-1f, 1f))
+        if (isExploding)
         {
-            MoveTowardsTarget();
-            swarm.SetActive(true);
-        } 
+            return;
+        }
+        else if (distance < attackRange)
+        {
+            AttackPlayer();
+        }
         else if (isAggroed || isSwarmed)
         {
             MoveTowardsTarget();
         }
-        else
+        else if (distance < aggroTriggerRadius + Random.Range(-1f, 1f))
         {
-            rb.velocity = Vector2.zero;
-            swarm.SetActive(false);
+            MoveTowardsTarget();
+            swarm.SetActive(true);
         }
+    }
+
+    private void AttackPlayer()
+    {
+        isExploding = true;
+        Destroy(gameObject, .5f);
+        // Play particle here ==========================================
     }
 
     void MoveTowardsTarget()
@@ -51,7 +66,7 @@ public class EnemyController : MonoBehaviour
         isAggroed = true;
     }
 
-    // visualization of aggro and swarm raduis 
+    // Visualization of aggro and swarm raduis 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -67,5 +82,10 @@ public class EnemyController : MonoBehaviour
         {
             isSwarmed = true;
         }
+    }
+
+    private void OnDestroy()
+    {
+        // PLayer character suffers damage
     }
 }
