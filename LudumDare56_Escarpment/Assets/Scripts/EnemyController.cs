@@ -1,25 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] int health;
     [SerializeField] float speed;
-    [SerializeField] float aggroTriggerRadius;
-    [SerializeField] float swarmRadius;
 
     [Header("Refernces")]
     public Transform character;
     Rigidbody2D rb;
 
-    [Header("Swarming")]
-    Transform nearestObject = null;
-    float nearestDistance = Mathf.Infinity;
+    [Header("Aggro")]
+    [SerializeField] float aggroTriggerRadius;
+    public float swarmRadius;
+    [SerializeField] GameObject swarm;
+    bool isAggroed = false;
+    bool isSwarmed = false;
 
     private void Start()
     {
@@ -30,13 +26,19 @@ public class EnemyController : MonoBehaviour
     {
         float distance = Vector2.Distance(transform.position, character.position);
 
-        if (distance <= aggroTriggerRadius)
+        if (distance <= aggroTriggerRadius + Random.Range(-1f, 1f))
+        {
+            MoveTowardsTarget();
+            swarm.SetActive(true);
+        } 
+        else if (isAggroed || isSwarmed)
         {
             MoveTowardsTarget();
         }
         else
         {
             rb.velocity = Vector2.zero;
+            swarm.SetActive(false);
         }
     }
 
@@ -46,6 +48,7 @@ public class EnemyController : MonoBehaviour
         direction.Normalize();
         Vector2 velocity = direction * speed;
         rb.velocity = velocity;
+        isAggroed = true;
     }
 
     // visualization of aggro and swarm raduis 
@@ -58,4 +61,11 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, swarmRadius);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Swarm"))
+        {
+            isSwarmed = true;
+        }
+    }
 }
