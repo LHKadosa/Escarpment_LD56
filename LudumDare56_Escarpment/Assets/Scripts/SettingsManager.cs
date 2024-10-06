@@ -3,7 +3,28 @@ using System;
 
 public class SettingsManager : MonoBehaviour
 {
-    public static SettingsManager Instance { get; private set; }
+    private static SettingsManager _instance;
+
+    public static SettingsManager Instance {
+        get 
+        {
+            if (_instance == null) 
+            {
+                _instance = FindObjectOfType<SettingsManager>();
+
+                // If there is no instance in the scene, create one
+                // This is to prevent Null reference errors while developing/testing
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject();
+                    _instance = singletonObject.AddComponent<SettingsManager>();
+                    singletonObject.name = typeof(SettingsManager).ToString() + " (Singleton)";
+                }
+            }
+
+            return _instance;
+        }
+    }
 
     public event Action<int> OnVolumeChanged;
 
@@ -14,12 +35,12 @@ public class SettingsManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        if (_instance == null)
         {
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (_instance != this)
         {
             Destroy(gameObject);
         }
