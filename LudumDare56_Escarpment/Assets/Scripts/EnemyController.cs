@@ -19,6 +19,9 @@ public class EnemyController : MonoBehaviour
     bool isSwarmed = false;
     bool isExploding = false;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip enemy1Explosion;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -84,6 +87,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        // PLayer character suffers damage
+        AudioManager.instance.PlaySFX(enemy1Explosion, transform, 1f);
     }
 }
