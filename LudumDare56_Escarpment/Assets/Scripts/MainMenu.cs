@@ -63,6 +63,12 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
     }
+    
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Game");
+    }
 
     public void ToggleSettingsMenu()
     {
