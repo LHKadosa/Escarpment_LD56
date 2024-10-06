@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] AudioClip enemy1Explosion;
+    [SerializeField] AudioClip enemy1Swarm;
 
     private void Start()
     {
@@ -54,7 +55,7 @@ public class EnemyController : MonoBehaviour
     private void AttackPlayer()
     {
         isExploding = true;
-        Destroy(gameObject, .5f);
+        Destroy(gameObject, .2f);
         // Play particle here ==========================================
     }
 
@@ -67,14 +68,19 @@ public class EnemyController : MonoBehaviour
         isAggroed = true;
     }
 
+    void PlaySwarmSFX()
+    {
+        AudioManager.instance.PlaySFX(enemy1Swarm, transform, 1f);
+    }
+
     // Visualization of aggro and swarm radius 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, aggroTriggerRadius);
+        //Gizmos.DrawWireSphere(transform.position, aggroTriggerRadius);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, swarmRadius);
+        //Gizmos.DrawWireSphere(transform.position, swarmRadius);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,6 +88,12 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Swarm"))
         {
             isSwarmed = true;
+            int reduceSwarm = Random.Range(1, 5);
+            if (reduceSwarm == 1)
+            {
+                float crowdVoice = Random.Range(0f, .8f);
+                Invoke("PlaySwarmSFX", crowdVoice);
+            }
         }
     }
 
