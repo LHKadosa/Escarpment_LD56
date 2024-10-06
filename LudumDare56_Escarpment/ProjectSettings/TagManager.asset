@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy1
   - Swarm
+  - HealthUI
   layers:
   - Default
   - TransparentFX
