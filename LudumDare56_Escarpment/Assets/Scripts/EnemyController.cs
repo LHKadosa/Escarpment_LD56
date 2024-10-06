@@ -19,6 +19,9 @@ public class EnemyController : MonoBehaviour
     bool isSwarmed = false;
     bool isExploding = false;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip enemy1Explosion;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,8 +30,6 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-
         float distance = Vector2.Distance(transform.position, character.position);
 
         if (isExploding)
@@ -66,7 +67,7 @@ public class EnemyController : MonoBehaviour
         isAggroed = true;
     }
 
-    // Visualization of aggro and swarm raduis 
+    // Visualization of aggro and swarm radius 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -86,6 +87,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        // PLayer character suffers damage
+        AudioManager.instance.PlaySFX(enemy1Explosion, transform, 1f);
     }
 }
