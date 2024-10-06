@@ -26,11 +26,14 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    public event Action<int> OnVolumeChanged;
+    public event Action<int> OnSoundsVolumeChanged;
+
+    public event Action<int> OnMusicVolumeChanged;
 
     public event Action<bool> OnDifficultyChanged;
 
-    private int volume = 50;
+    private int soundsVolume = 50;
+    private int musicVolume = 50;
     private bool hardMode = false;
 
     void Awake()
@@ -46,10 +49,16 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    public void SetVolume(int newVolume)
+    public void SetSoundsVolume(int newVolume)
     {
-        volume = newVolume;
-        OnVolumeChanged?.Invoke(volume);
+        soundsVolume = newVolume;
+        OnSoundsVolumeChanged?.Invoke(soundsVolume);
+    }
+    
+    public void SetMusicVolume(int newVolume)
+    {
+        musicVolume = newVolume;
+        OnMusicVolumeChanged?.Invoke(musicVolume);
     }
 
     public void SetDifficulty(bool isHardMode)
@@ -58,9 +67,14 @@ public class SettingsManager : MonoBehaviour
         OnDifficultyChanged?.Invoke(hardMode);
     }
 
-    public int GetVolume()
+    public int GetSoundsVolume()
     {
-        return volume;
+        return soundsVolume;
+    }
+    
+    public int GetMusicVolume()
+    {
+        return musicVolume;
     }
 
     public bool IsHardMode()

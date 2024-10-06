@@ -3,28 +3,39 @@ using UnityEngine.UI;  // Required to work with UI elements
 
 public class SettingsMenu : MonoBehaviour
 {
-    public Slider volumeSlider;
+    public Slider soundsSlider;
+    public Slider musicSlider;
     public Toggle difficultyToggle;
 
     void Start()
     {
         difficultyToggle.onValueChanged.AddListener(delegate { OnHardModeToggled(); });
 
-        InitializeVolumeSlider();
+        InitializeSettings();
     }
 
-    void InitializeVolumeSlider()
+    void InitializeSettings()
     {
-        int currentVolume = SettingsManager.Instance.GetVolume();
-        volumeSlider.value = (float)currentVolume;
+        int currentSoundsVolume = SettingsManager.Instance.GetSoundsVolume();
+        soundsSlider.value = (float)currentSoundsVolume;
+        
+        int currentMusicVolume = SettingsManager.Instance.GetMusicVolume();
+        musicSlider.value = (float)currentMusicVolume;
 
         bool isHardMode = SettingsManager.Instance.IsHardMode();
         difficultyToggle.isOn = isHardMode;
     }
 
-    public void OnVolumeChanged()
+    public void OnSoundsVolumeChanged()
     {
-        SettingsManager.Instance.SetVolume((int)volumeSlider.value);
+        Debug.Log("OnSoundsVolumeChanged " + soundsSlider.value);
+        SettingsManager.Instance.SetSoundsVolume((int)soundsSlider.value);
+    }
+    
+    public void OnMusicVolumeChanged()
+    {
+        Debug.Log("OnMusicVolumeChanged " + musicSlider.value);
+        SettingsManager.Instance.SetMusicVolume((int)musicSlider.value);
     }
 
     void OnHardModeToggled()
