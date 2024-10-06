@@ -136,7 +136,6 @@ MonoBehaviour:
   swarmRadius: 3
   swarm: {fileID: 3694366680503860091}
   enemy1Explosion: {fileID: 8300000, guid: 613bcfdb98f4c8945b2b7aa1153ade8b, type: 3}
-  enemy1Swarm: {fileID: 8300000, guid: 932fa9d300f3d9146b6e0e584e01da71, type: 3}
 --- !u!58 &2563341911283441416
 CircleCollider2D:
   m_ObjectHideFlags: 0
