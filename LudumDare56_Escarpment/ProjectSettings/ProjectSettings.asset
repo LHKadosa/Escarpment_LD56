@@ -631,8 +631,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: LudumDare56_Escarpment
-  metroPackageVersion: 
+  metroPackageName: LudumDare56Escarpment
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -640,7 +640,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: LudumDare56_Escarpment
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: LudumDare56_Escarpment
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
