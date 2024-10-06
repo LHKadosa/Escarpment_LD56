@@ -27,8 +27,6 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-
         float distance = Vector2.Distance(transform.position, character.position);
 
         if (isExploding)
@@ -66,7 +64,7 @@ public class EnemyController : MonoBehaviour
         isAggroed = true;
     }
 
-    // Visualization of aggro and swarm raduis 
+    // Visualization of aggro and swarm radius 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
