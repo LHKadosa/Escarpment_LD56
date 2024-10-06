@@ -23,7 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
         inputVector.x = Input.GetAxis("Horizontal");
         inputVector.y = Input.GetAxis("Vertical");
 
-        //PlayerMovement.SetInputVector(inputVector);
+        PlayerMovement.SetInputVector(inputVector);
 
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
