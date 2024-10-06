@@ -10,7 +10,7 @@ public class EnemyDamage : MonoBehaviour
     void Start()
     {
         didDamageYet = false;
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthScript>();
+        Invoke("SetPlayerScript", 0.5f);
     }
 
     public void DidDamage() 
@@ -26,5 +26,10 @@ public class EnemyDamage : MonoBehaviour
             DidDamage();
             Debug.Log("Collision");
         }
+    }
+
+    void SetPlayerScript()
+    {
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthScript>();
     }
 }
