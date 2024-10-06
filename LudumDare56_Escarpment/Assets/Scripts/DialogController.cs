@@ -13,7 +13,6 @@ public class DialogController : MonoBehaviour
     public float endDialogDelay = 2.0f;
 
     private Queue<string> dialogLines;
-    private bool isTyping;
     private bool isDialogActive;
 
 
@@ -61,8 +60,6 @@ public class DialogController : MonoBehaviour
 
     IEnumerator TypeLine(string line)
     {
-        isTyping = true;
-
         foreach (char letter in line.ToCharArray())
         {
             dialogText.text += letter;
@@ -70,8 +67,6 @@ public class DialogController : MonoBehaviour
         }
 
         dialogText.text += "\n";
-
-        isTyping = false;
     }
 
     void EndDialog()
