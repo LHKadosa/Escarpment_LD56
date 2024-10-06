@@ -31,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6310630810933408975}
+  m_Children: []
   m_Father: {fileID: 4174106420174426057}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5626374091319654735
@@ -219,6 +218,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7852708429253280622}
+  - {fileID: 6310630810933408975}
   - {fileID: 835385142105462424}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -287,7 +287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flame: {fileID: 235035094221492464}
-  ammo: 10
+  flameParticle: {fileID: 0}
+  heat: 10
 --- !u!114 &9183094059109511221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,11 +412,11 @@ Transform:
   m_GameObject: {fileID: 7661450257271846840}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.93, z: 0}
+  m_LocalPosition: {x: 0, y: 0.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 835385142105462424}
+  m_Father: {fileID: 4174106420174426057}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &8069983580415214527
 ParticleSystem:
