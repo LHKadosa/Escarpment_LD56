@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,6 +12,9 @@ public class MainMenu : MonoBehaviour
 #if UNITY_EDITOR
     public SceneAsset gameScene;
 #endif
+    public Animator mainMenuAnimator;
+    public Animator settingsMenuAnimator;
+    public GameObject settingsMenu;
     public GameObject pauseMenuUI;
     private bool isPaused = false;
 
@@ -61,9 +66,14 @@ public class MainMenu : MonoBehaviour
         isPaused = true;
     }
 
-    public void OpenSettings()
+    public void ToggleSettingsMenu()
     {
-        Debug.Log("Settings Button Clicked");
+        bool isOpened = mainMenuAnimator.GetBool("openSettings");
+        mainMenuAnimator.SetBool("openSettings", !isOpened);
+
+        settingsMenu.SetActive(!isOpened);
+
+        settingsMenuAnimator.SetBool("openSettings", !isOpened);
     }
 
     public void GoToMainMenu()
