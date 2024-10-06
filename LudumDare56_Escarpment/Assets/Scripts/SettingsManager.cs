@@ -3,32 +3,62 @@ using System;
 
 public class SettingsManager : MonoBehaviour
 {
-    public static SettingsManager Instance { get; private set; }
+    private static SettingsManager _instance;
 
-    public event Action<int> OnVolumeChanged;
+    public static SettingsManager Instance {
+        get 
+        {
+            if (_instance == null) 
+            {
+                _instance = FindObjectOfType<SettingsManager>();
+
+                // If there is no instance in the scene, create one
+                // This is to prevent Null reference errors while developing/testing
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject();
+                    _instance = singletonObject.AddComponent<SettingsManager>();
+                    singletonObject.name = typeof(SettingsManager).ToString() + " (Singleton)";
+                }
+            }
+
+            return _instance;
+        }
+    }
+
+    public event Action<int> OnSoundsVolumeChanged;
+
+    public event Action<int> OnMusicVolumeChanged;
 
     public event Action<bool> OnDifficultyChanged;
 
-    private int volume = 50;
+    private int soundsVolume = 50;
+    private int musicVolume = 50;
     private bool hardMode = false;
 
     void Awake()
     {
-        if (Instance == null)
+        if (_instance == null)
         {
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (_instance != this)
         {
             Destroy(gameObject);
         }
     }
 
-    public void SetVolume(int newVolume)
+    public void SetSoundsVolume(int newVolume)
     {
-        volume = newVolume;
-        OnVolumeChanged?.Invoke(volume);
+        soundsVolume = newVolume;
+        OnSoundsVolumeChanged?.Invoke(soundsVolume);
+    }
+    
+    public void SetMusicVolume(int newVolume)
+    {
+        musicVolume = newVolume;
+        OnMusicVolumeChanged?.Invoke(musicVolume);
     }
 
     public void SetDifficulty(bool isHardMode)
@@ -37,9 +67,14 @@ public class SettingsManager : MonoBehaviour
         OnDifficultyChanged?.Invoke(hardMode);
     }
 
-    public int GetVolume()
+    public int GetSoundsVolume()
     {
-        return volume;
+        return soundsVolume;
+    }
+    
+    public int GetMusicVolume()
+    {
+        return musicVolume;
     }
 
     public bool IsHardMode()
