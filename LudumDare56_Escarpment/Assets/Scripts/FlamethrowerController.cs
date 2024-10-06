@@ -10,13 +10,21 @@ public class FlamethrowerController : MonoBehaviour
     GameObject flame;
 
     [SerializeField]
+    ParticleSystem flameParticle;
+
+    [SerializeField]
+    SpriteRenderer tower;
+
+    [SerializeField]
     float heat = 10f;
     float cooldown = 3f;
 
     bool isThrowingFlame, isOverheated;
+    float maxHeat;
 
     void Start()
     {
+        maxHeat = heat;
         isThrowingFlame = false;
         isOverheated = false;
         flame.SetActive(false);
@@ -28,12 +36,14 @@ public class FlamethrowerController : MonoBehaviour
         {
             isThrowingFlame = true;
             flame.SetActive(true);
+            flameParticle.Play();
         }
 
         if (Input.GetMouseButtonUp(0) || heat<=0)
         {
             isThrowingFlame = false;
             flame.SetActive(false);
+            flameParticle.Stop();
         }
 
         if (heat <= 0)
@@ -55,6 +65,7 @@ public class FlamethrowerController : MonoBehaviour
         {
             heat += 2*Time.deltaTime;
         }
+        tower.color = new Color(1, heat / maxHeat, heat / maxHeat, 1);
     }
 
     IEnumerator StartCooling()

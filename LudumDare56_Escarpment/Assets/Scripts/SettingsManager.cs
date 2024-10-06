@@ -32,13 +32,8 @@ public class SettingsManager : MonoBehaviour
 
     public event Action<bool> OnDifficultyChanged;
 
-<<<<<<< HEAD
-    private int soundsVolume = -10;
-    private int musicVolume = 10;
-=======
     private int soundsVolume = 50;
     private int musicVolume = 50;
->>>>>>> parent of af437e3 (Audio can be adjusted from settings)
     private bool hardMode = false;
 
     void Awake()
