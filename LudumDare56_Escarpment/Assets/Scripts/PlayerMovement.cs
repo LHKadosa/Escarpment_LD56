@@ -20,14 +20,22 @@ public class PlayerMovement : MonoBehaviour
 
     //Components
     Rigidbody2D tankBody;
+    Animator ChainlinkAnimLeft;
+    Animator ChainlinkAnimRight;
 
     private void Awake()
     {
         tankBody = GetComponent<Rigidbody2D>();
+        ChainlinkAnimLeft = gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Animator>();
+        ChainlinkAnimRight = gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Animator>();
+        ChainlinkAnimLeft.speed = 0;
+        ChainlinkAnimRight.speed = 0;
     }
 
     private void FixedUpdate()
     {
+        AnimateChainlinksBasedOnSpeed();
+
         ApplyEngineForce();
 
         StopSidewaysSliding();
@@ -66,6 +74,12 @@ public class PlayerMovement : MonoBehaviour
 
         //Apply the force to move the tank forward
         tankBody.AddForce(engineForceVector, ForceMode2D.Force);
+    }
+    void AnimateChainlinksBasedOnSpeed()
+    {
+        //Set the Chainlink's animation speed based on the tank's speed
+        ChainlinkAnimLeft.speed = (Mathf.Abs(tankBody.velocity.magnitude) / maxSpeed);
+        ChainlinkAnimRight.speed = (Mathf.Abs(tankBody.velocity.magnitude) / maxSpeed);
     }
 
     void ApplySteering()
