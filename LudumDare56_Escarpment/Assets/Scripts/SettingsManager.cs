@@ -1,11 +1,9 @@
 using UnityEngine;
 using System;
-using UnityEngine.Audio;
 
 public class SettingsManager : MonoBehaviour
 {
     private static SettingsManager _instance;
-    [SerializeField] AudioMixer audioMixer;
 
     public static SettingsManager Instance {
         get 
@@ -34,8 +32,13 @@ public class SettingsManager : MonoBehaviour
 
     public event Action<bool> OnDifficultyChanged;
 
+<<<<<<< HEAD
     private int soundsVolume = -10;
     private int musicVolume = 10;
+=======
+    private int soundsVolume = 50;
+    private int musicVolume = 50;
+>>>>>>> parent of af437e3 (Audio can be adjusted from settings)
     private bool hardMode = false;
 
     void Awake()
@@ -55,14 +58,12 @@ public class SettingsManager : MonoBehaviour
     {
         soundsVolume = newVolume;
         OnSoundsVolumeChanged?.Invoke(soundsVolume);
-        audioMixer.SetFloat("SFXVolume", soundsVolume);
     }
     
     public void SetMusicVolume(int newVolume)
     {
         musicVolume = newVolume;
         OnMusicVolumeChanged?.Invoke(musicVolume);
-        audioMixer.SetFloat("MusicVolume", musicVolume);
     }
 
     public void SetDifficulty(bool isHardMode)
