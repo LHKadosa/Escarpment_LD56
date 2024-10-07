@@ -378,6 +378,7 @@ MonoBehaviour:
   health: 50
   speed: 2
   character: {fileID: 0}
+  explodingParticle: {fileID: 8360234052285739408, guid: 142b2f6f903382a4380bf6495abb4919, type: 3}
   aggroTriggerRadius: 5
   attackRange: 1
   swarmRadius: 3
