@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f23aff4b48c804baa8604574ed4278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: {fileID: 102900000, guid: e3c8df7df7c096e458fe6832c44f2051, type: 3}
+  gameScene: {fileID: 102900000, guid: a40617ea746ed0349bf4dc2276ea947c, type: 3}
   mainMenuAnimator: {fileID: 1179616283}
   settingsMenuAnimator: {fileID: 1597354147}
   settingsMenu: {fileID: 1597354144}
