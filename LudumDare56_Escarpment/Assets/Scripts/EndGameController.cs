@@ -12,14 +12,12 @@ public class EndGameController : MonoBehaviour
 
     private void OnEnable()
     {
-        // TODO: Subscribe to the action from wherever it is triggered
-        //PlayerInputHandler.OnGameEnd += ShowMenu;
+        PlayerHealthScript.OnGameEnd += ShowMenu;
     }
 
     private void OnDisable()
     {
-        // TODO: Unsubscribe
-        //PlayerInputHandler.OnGameEnd -= ShowMenu;
+        PlayerHealthScript.OnGameEnd -= ShowMenu;
     }
 
     public void ShowMenu(bool hasWon, GameScore gameScore)
@@ -37,12 +35,29 @@ public class EndGameController : MonoBehaviour
 
         if (score != null)
         {
-            score.text = $"Score: {gameScore.score}\nTime: {gameScore.timeTaken} seconds";
+            ShowScore(gameScore);
         }
     }
 
     public void HideMenu()
     {
         endGameMenu.SetActive(false);
+    }
+    
+    private void ShowScore(GameScore gameScore)
+    {
+        string displayText = "";
+
+        if (gameScore.score.HasValue)
+        {
+            displayText += $"Score: {gameScore.score.Value}\n";
+        }
+
+        if (gameScore.timeTaken.HasValue)
+        {
+            displayText += $"Time: {gameScore.timeTaken.Value} seconds";
+        }
+
+        score.text = displayText.TrimEnd();
     }
 }

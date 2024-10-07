@@ -3,6 +3,6 @@ using System;
 [Serializable]
 public class GameScore
 {
-    public int score;
-    public float timeTaken;
+    public int? score;
+    public float? timeTaken;
 }
