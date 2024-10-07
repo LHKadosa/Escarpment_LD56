@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] AudioClip enemy1Explosion;
+    [SerializeField] AudioClip enemy1Swarm;
 
     private void Start()
     {
@@ -30,31 +31,35 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float distance = Vector2.Distance(transform.position, character.position);
+        if (character != null)
+        {
+            //Döme, I'm terribly sorry. I had to make some changes to your code in order to avoid some potencial future errors. I take full responsibility fot the errors my actions might cause here.
+            float distance = Vector2.Distance(transform.position, character.position);
 
-        if (isExploding)
-        {
-            return;
-        }
-        else if (distance < attackRange)
-        {
-            AttackPlayer();
-        }
-        else if (isAggroed || isSwarmed)
-        {
-            MoveTowardsTarget();
-        }
-        else if (distance < aggroTriggerRadius + Random.Range(-1f, 1f))
-        {
-            MoveTowardsTarget();
-            swarm.SetActive(true);
+            if (isExploding)
+            {
+                return;
+            }
+            else if (distance < attackRange)
+            {
+                AttackPlayer();
+            }
+            else if (isAggroed || isSwarmed)
+            {
+                MoveTowardsTarget();
+            }
+            else if (distance < aggroTriggerRadius + Random.Range(-1f, 1f))
+            {
+                MoveTowardsTarget();
+                swarm.SetActive(true);
+            }
         }
     }
 
     private void AttackPlayer()
     {
         isExploding = true;
-        Destroy(gameObject, .5f);
+        Destroy(gameObject, .2f);
         // Play particle here ==========================================
     }
 
@@ -67,14 +72,19 @@ public class EnemyController : MonoBehaviour
         isAggroed = true;
     }
 
+    void PlaySwarmSFX()
+    {
+        AudioManager.instance.PlaySFX(enemy1Swarm, transform, 1f);
+    }
+
     // Visualization of aggro and swarm radius 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, aggroTriggerRadius);
+        //Gizmos.DrawWireSphere(transform.position, aggroTriggerRadius);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, swarmRadius);
+        //Gizmos.DrawWireSphere(transform.position, swarmRadius);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,6 +92,12 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Swarm"))
         {
             isSwarmed = true;
+            int reduceSwarm = Random.Range(1, 5);
+            if (reduceSwarm == 1)
+            {
+                float crowdVoice = Random.Range(0f, .8f);
+                Invoke("PlaySwarmSFX", crowdVoice);
+            }
         }
     }
 
