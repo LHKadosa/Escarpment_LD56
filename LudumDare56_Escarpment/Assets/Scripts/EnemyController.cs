@@ -111,7 +111,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Swarm"))
         {
             isSwarmed = true;
-            int reduceSwarm = Random.Range(1, 5);
+            int reduceSwarm = Random.Range(1, 40);
             if (reduceSwarm == 1)
             {
                 float crowdVoice = Random.Range(0f, .8f);
