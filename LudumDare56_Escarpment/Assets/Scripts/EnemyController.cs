@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
 
     private void NewTargetOffset()
     {
-        targetOffset = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0);
+        targetOffset = new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f), 0);
     }
 
     private void AttackPlayer()
