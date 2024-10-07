@@ -41,7 +41,7 @@ public class FlamethrowerController : MonoBehaviour
             isThrowingFlame = true;
             flame.SetActive(true);
             flameParticle.Play();
-            AudioManager.instance.PlaySFX(flame1, transform, 1f);
+            AudioManager.instance.PlaySFX(flame1, transform, .6f);
         }
 
         if (Input.GetMouseButton(0) && !isOverheated && !isFlaming)
@@ -91,14 +91,14 @@ public class FlamethrowerController : MonoBehaviour
 
     IEnumerator WaitForAudio()
     {
-        AudioManager.instance.PlaySFX(flame2, transform, 1f);
+        AudioManager.instance.PlaySFX(flame2, transform, .5f);
         yield return new WaitForSeconds(.734f);
         isFlaming = false;
     }
 
     void PlayFireAudio()
     {
-        AudioManager.instance.PlaySFX(flame2, transform, 1f);
+        AudioManager.instance.PlaySFX(flame2, transform, .6f);
         isFlaming=true;
         StartCoroutine(WaitForAudio());
         if (flameIterator == 3)
