@@ -71,7 +71,7 @@ public class EndGameController : MonoBehaviour
 
         if (gameScore.timeTaken.HasValue)
         {
-            displayText += $"Time: {gameScore.timeTaken.Value} seconds";
+            displayText += $"Time: {gameScore.timeTaken.Value:F1} seconds";
         }
 
         score.text = displayText.TrimEnd();
