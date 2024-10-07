@@ -4,6 +4,7 @@ using UnityEngine;
 public class Scientist : MonoBehaviour
 {
     [SerializeField] AudioClip victory;
+    [SerializeField] EndGameController endGameController;
 
     public static event Action<bool, GameScore> OnGameVictory;
 
@@ -24,8 +25,8 @@ public class Scientist : MonoBehaviour
                 score = null, 
                 timeTaken = Time.time,
             };
-
-            OnGameVictory?.Invoke(false, score);
+            endGameController.ShowMenu(true, score);
+            //OnGameVictory?.Invoke(false, score);
         }
     }
 }
