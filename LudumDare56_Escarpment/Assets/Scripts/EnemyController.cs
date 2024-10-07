@@ -24,19 +24,22 @@ public class EnemyController : MonoBehaviour
     [SerializeField] AudioClip enemy1Explosion;
     [SerializeField] AudioClip enemy1Swarm;
 
+    private Vector3 targetOffset;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         anim = gameObject.transform.GetChild(0).GetComponent<Animator>();
         anim.SetBool("IsMoving", false);
+        NewTargetOffset();
     }
 
     void FixedUpdate()
     {
         if (character != null)
         {
-            //Döme, I'm terribly sorry. I had to make some changes to your code in order to avoid some potencial future errors. I take full responsibility fot the errors my actions might cause here.
+            //Döme, I'm terribly sorry.I had to make some changes to your code in order to avoid some potencial future errors.I take full responsibility fot the errors my actions might cause here.
             float distance = Vector2.Distance(transform.position, character.position);
             anim.SetBool("IsMoving", false);
 
@@ -59,7 +62,17 @@ public class EnemyController : MonoBehaviour
                 swarm.SetActive(true);
                 FacePlayer();
             }
+
+            if ((character.position + targetOffset - transform.position).magnitude < 1)
+            {
+                NewTargetOffset();
+            }
         }
+    }
+
+    private void NewTargetOffset()
+    {
+        targetOffset = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0);
     }
 
     private void AttackPlayer()
@@ -71,7 +84,7 @@ public class EnemyController : MonoBehaviour
 
     void MoveTowardsTarget()
     {
-        Vector2 direction = character.position - transform.position;
+        Vector2 direction = (character.position + targetOffset) - transform.position;
         direction.Normalize();
         Vector2 velocity = direction * speed;
         rb.velocity = velocity;

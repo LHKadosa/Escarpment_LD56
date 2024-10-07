@@ -195,10 +195,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1406465735029209000}
+  - component: {fileID: 6409690531659472569}
   - component: {fileID: 7103140911343966649}
   - component: {fileID: 8046782480767943074}
   - component: {fileID: 3314698912890656561}
-  - component: {fileID: 6409690531659472569}
   - component: {fileID: 3781000800752720019}
   m_Layer: 0
   m_Name: Enemy1
@@ -217,13 +217,26 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.57, y: -4.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5556568992354647806}
   - {fileID: 2632977854264202620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6409690531659472569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7749148336029698189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30478c3d29b925d41aca390420ce16ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
 --- !u!114 &7103140911343966649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,11 +249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6215b5bab9fa9f4e840fe17d297a8c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  speed: 5
+  health: 50
+  speed: 3
   character: {fileID: 0}
-  aggroTriggerRadius: 7
-  attackRange: 2
+  aggroTriggerRadius: 5
+  attackRange: 1
   swarmRadius: 3
   swarm: {fileID: 4253468586986751056}
   enemy1Explosion: {fileID: 8300000, guid: 613bcfdb98f4c8945b2b7aa1153ade8b, type: 3}
@@ -307,18 +320,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6409690531659472569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7749148336029698189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30478c3d29b925d41aca390420ce16ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3781000800752720019
 MonoBehaviour:
   m_ObjectHideFlags: 0
