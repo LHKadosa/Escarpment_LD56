@@ -89,11 +89,11 @@ public class PlayerMovement : MonoBehaviour
     void ApplySteering()
     {
         //Limit when the player can turn
-        float minSpeedBeforeAllowTurnFactor = (tankBody.velocity.magnitude / 8);
-        minSpeedBeforeAllowTurnFactor = Mathf.Clamp01(minSpeedBeforeAllowTurnFactor);
+        //float minSpeedBeforeAllowTurnFactor = (tankBody.velocity.magnitude / 8);
+        //minSpeedBeforeAllowTurnFactor = Mathf.Clamp01(minSpeedBeforeAllowTurnFactor);
 
         //Update the rotation the Tank faces
-        rotationAngle -= steeringInput * turnfactor * minSpeedBeforeAllowTurnFactor;
+        rotationAngle -= steeringInput * turnfactor /** minSpeedBeforeAllowTurnFactor*/;
 
         //Apply steering by rotating the Tank
         tankBody.MoveRotation(rotationAngle);
