@@ -18,10 +18,6 @@ public class MainMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     private bool isPaused = false;
 
-    private void Awake()
-    {
-        Time.timeScale = 1f;
-    }
     private void OnEnable()
     {
         PlayerInputHandler.OnPausePressed += HandlePausePressed;
@@ -58,7 +54,6 @@ public class MainMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        Time.fixedDeltaTime = 1f;
         isPaused = false;
     }
 
@@ -66,7 +61,6 @@ public class MainMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        Time.fixedDeltaTime = 0f;
         isPaused = true;
     }
     
