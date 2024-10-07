@@ -19,12 +19,14 @@ public class FlamethrowerController : MonoBehaviour
     bool isThrowingFlame, isOverheated;
     float maxHeat;
 
+    bool overheatTutorial = false;
     bool isFlaming = false;
     int flameIterator = 0;
 
     [SerializeField] AudioClip flame1;
     [SerializeField] AudioClip flame2;
     [SerializeField] AudioClip flame3;
+    [SerializeField] AudioClip overheatClip;
 
     void Start()
     {
@@ -82,6 +84,11 @@ public class FlamethrowerController : MonoBehaviour
 
     IEnumerator StartCooling()
     {
+        if (overheatTutorial)
+        {
+            AudioManager.instance.PlaySFX(overheatClip, transform, 1f);
+        }
+
         Debug.Log("Cooling started");
         isOverheated = true;
         yield return new WaitForSeconds(cooldown);
