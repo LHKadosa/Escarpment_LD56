@@ -288,7 +288,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flame: {fileID: 235035094221492464}
   flameParticle: {fileID: 0}
+  tower: {fileID: 0}
   heat: 10
+  flame1: {fileID: 0}
+  flame2: {fileID: 0}
+  flame3: {fileID: 0}
+  overheatClip: {fileID: 8300000, guid: 91a42baa28391344e943878114fe3224, type: 3}
 --- !u!114 &9183094059109511221
 MonoBehaviour:
   m_ObjectHideFlags: 0

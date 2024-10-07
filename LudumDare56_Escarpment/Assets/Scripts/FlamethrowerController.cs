@@ -19,7 +19,7 @@ public class FlamethrowerController : MonoBehaviour
     bool isThrowingFlame, isOverheated;
     float maxHeat;
 
-    bool overheatTutorial = false;
+    bool overheatTutorial = true;
     bool isFlaming = false;
     int flameIterator = 0;
 
@@ -38,7 +38,7 @@ public class FlamethrowerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)&& !isOverheated)
+        if (Input.GetMouseButtonDown(0)&& !isOverheated && Time.timeScale != 0)
         {
             isThrowingFlame = true;
             flame.SetActive(true);
@@ -46,7 +46,7 @@ public class FlamethrowerController : MonoBehaviour
             AudioManager.instance.PlaySFX(flame1, transform, .6f);
         }
 
-        if (Input.GetMouseButton(0) && !isOverheated && !isFlaming)
+        if (Input.GetMouseButton(0) && !isOverheated && !isFlaming && Time.timeScale != 0)
         {
             PlayFireAudio();
             flameIterator++;
@@ -87,6 +87,7 @@ public class FlamethrowerController : MonoBehaviour
         if (overheatTutorial)
         {
             AudioManager.instance.PlaySFX(overheatClip, transform, 1f);
+            overheatTutorial = false;
         }
 
         Debug.Log("Cooling started");
