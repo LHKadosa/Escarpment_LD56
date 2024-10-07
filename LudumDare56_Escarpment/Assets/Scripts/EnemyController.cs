@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     [Header("Refernces")]
     public Transform character;
     Rigidbody2D rb;
+    private Animator anim;
 
     [Header("Aggro")]
     [SerializeField] float aggroTriggerRadius;
@@ -26,29 +27,38 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.freezeRotation = false;
+        rb.freezeRotation = true;
+        anim = gameObject.transform.GetChild(0).GetComponent<Animator>();
+        anim.SetBool("IsMoving", false);
     }
 
     void FixedUpdate()
     {
-        float distance = Vector2.Distance(transform.position, character.position);
+        if (character != null)
+        {
+            //Döme, I'm terribly sorry. I had to make some changes to your code in order to avoid some potencial future errors. I take full responsibility fot the errors my actions might cause here.
+            float distance = Vector2.Distance(transform.position, character.position);
+            anim.SetBool("IsMoving", false);
 
-        if (isExploding)
-        {
-            return;
-        }
-        else if (distance < attackRange)
-        {
-            AttackPlayer();
-        }
-        else if (isAggroed || isSwarmed)
-        {
-            MoveTowardsTarget();
-        }
-        else if (distance < aggroTriggerRadius + Random.Range(-1f, 1f))
-        {
-            MoveTowardsTarget();
-            swarm.SetActive(true);
+            if (isExploding)
+            {
+                return;
+            }
+            else if (distance < attackRange)
+            {
+                AttackPlayer();
+            }
+            else if (isAggroed || isSwarmed)
+            {
+                MoveTowardsTarget();
+                FacePlayer();
+            }
+            else if (distance < aggroTriggerRadius + Random.Range(-1f, 1f))
+            {
+                MoveTowardsTarget();
+                swarm.SetActive(true);
+                FacePlayer();
+            }
         }
     }
 
@@ -95,6 +105,17 @@ public class EnemyController : MonoBehaviour
                 Invoke("PlaySwarmSFX", crowdVoice);
             }
         }
+    }
+
+    void FacePlayer()
+    {
+        var offset = 90f;
+        Vector2 direction = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
+        direction.Normalize();
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
+
+        anim.SetBool("IsMoving", true);
     }
 
     private void OnDestroy()

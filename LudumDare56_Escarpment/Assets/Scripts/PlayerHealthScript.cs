@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class PlayerHealthScript : MonoBehaviour
 
     public EnemyDamage EnemyDamageScript;
 
+    public static event Action<bool, GameScore> OnGameEnd;
+
     public Image healthBar;
     void Start()
     {
@@ -19,9 +22,21 @@ public class PlayerHealthScript : MonoBehaviour
         healthBar = GameObject.FindGameObjectWithTag("HealthUI").GetComponentInChildren<Image>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+
+            GameScore score = new GameScore
+            {
+                score = null, // TODO: implement score system ?
+                timeTaken = Time.time,
+            };
+
+            OnGameEnd?.Invoke(false, score);
+        }
     }
 
     public void LoseHealth()
