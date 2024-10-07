@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;  // Required to work with UI elements
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class SettingsMenu : MonoBehaviour
     {
         int currentSoundsVolume = SettingsManager.Instance.GetSoundsVolume();
         soundsSlider.value = (float)currentSoundsVolume;
-        
+
         int currentMusicVolume = SettingsManager.Instance.GetMusicVolume();
         musicSlider.value = (float)currentMusicVolume;
 
