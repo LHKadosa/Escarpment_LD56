@@ -19,9 +19,13 @@ public class PlayerHealthScript : MonoBehaviour
         healthBar = GameObject.FindGameObjectWithTag("HealthUI").GetComponentInChildren<Image>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void LoseHealth()

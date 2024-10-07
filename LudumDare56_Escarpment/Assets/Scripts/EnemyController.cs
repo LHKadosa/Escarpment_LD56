@@ -31,24 +31,28 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float distance = Vector2.Distance(transform.position, character.position);
+        if (character != null)
+        {
+            //Döme, I'm terribly sorry. I had to make some changes to your code in order to avoid some potencial future errors. I take full responsibility fot the errors my actions might cause here.
+            float distance = Vector2.Distance(transform.position, character.position);
 
-        if (isExploding)
-        {
-            return;
-        }
-        else if (distance < attackRange)
-        {
-            AttackPlayer();
-        }
-        else if (isAggroed || isSwarmed)
-        {
-            MoveTowardsTarget();
-        }
-        else if (distance < aggroTriggerRadius + Random.Range(-1f, 1f))
-        {
-            MoveTowardsTarget();
-            swarm.SetActive(true);
+            if (isExploding)
+            {
+                return;
+            }
+            else if (distance < attackRange)
+            {
+                AttackPlayer();
+            }
+            else if (isAggroed || isSwarmed)
+            {
+                MoveTowardsTarget();
+            }
+            else if (distance < aggroTriggerRadius + Random.Range(-1f, 1f))
+            {
+                MoveTowardsTarget();
+                swarm.SetActive(true);
+            }
         }
     }
 
