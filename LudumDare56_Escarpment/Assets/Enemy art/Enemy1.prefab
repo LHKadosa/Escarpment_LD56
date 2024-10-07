@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30478c3d29b925d41aca390420ce16ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  maxHealth: 30
 --- !u!114 &7103140911343966649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  speed: 3
+  speed: 2
   character: {fileID: 0}
   aggroTriggerRadius: 5
   attackRange: 1
