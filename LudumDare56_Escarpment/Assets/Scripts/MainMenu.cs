@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour
             Debug.LogError("No scene is assigned!");
         }
 #else
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("S_Kadosa 1");
 #endif
     }
 
