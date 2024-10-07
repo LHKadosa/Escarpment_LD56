@@ -44402,7 +44402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &806560042
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -98153,7 +98153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &2112108442
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -103082,6 +103082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flamethrower
       objectReference: {fileID: 0}
+    - target: {fileID: 350293106112157458, guid: eb72ba86ea29f0146916745bb5988250, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4174106420174426057, guid: eb72ba86ea29f0146916745bb5988250, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.69
@@ -103182,6 +103186,14 @@ PrefabInstance:
     - target: {fileID: 6420043363590058086, guid: 9659ee4a899486a4bacf4a7f73b36788, type: 3}
       propertyPath: moveWithTransform
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420043363590058086, guid: 9659ee4a899486a4bacf4a7f73b36788, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 14.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420043363590058086, guid: 9659ee4a899486a4bacf4a7f73b36788, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.21176471
       objectReference: {fileID: 0}
     - target: {fileID: 6420043363590058086, guid: 9659ee4a899486a4bacf4a7f73b36788, type: 3}
       propertyPath: UVModule.sprites.Array.data[0].sprite
