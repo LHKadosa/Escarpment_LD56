@@ -16,6 +16,8 @@ public class PlayerHealthScript : MonoBehaviour
     public static event Action<bool, GameScore> OnGameEnd;
 
     public Image healthBar;
+
+    [SerializeField] AudioClip die;
     void Start()
     {
         maxHealth = health;
@@ -34,8 +36,10 @@ public class PlayerHealthScript : MonoBehaviour
                 score = null, // TODO: implement score system ?
                 timeTaken = Time.time,
             };
-
+            
             OnGameEnd?.Invoke(false, score);
+
+            AudioManager.instance.PlaySFX(die, transform, 1f);
         }
     }
 
