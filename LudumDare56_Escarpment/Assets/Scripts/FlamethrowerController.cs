@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlamethrowerController : MonoBehaviour
@@ -22,6 +19,13 @@ public class FlamethrowerController : MonoBehaviour
     bool isThrowingFlame, isOverheated;
     float maxHeat;
 
+    bool isFlaming = false;
+    int flameIterator = 0;
+
+    [SerializeField] AudioClip flame1;
+    [SerializeField] AudioClip flame2;
+    [SerializeField] AudioClip flame3;
+
     void Start()
     {
         maxHeat = heat;
@@ -37,6 +41,13 @@ public class FlamethrowerController : MonoBehaviour
             isThrowingFlame = true;
             flame.SetActive(true);
             flameParticle.Play();
+            AudioManager.instance.PlaySFX(flame1, transform, 1f);
+        }
+
+        if (Input.GetMouseButton(0) && !isOverheated && !isFlaming)
+        {
+            PlayFireAudio();
+            flameIterator++;
         }
 
         if (Input.GetMouseButtonUp(0) || heat<=0)
@@ -44,6 +55,7 @@ public class FlamethrowerController : MonoBehaviour
             isThrowingFlame = false;
             flame.SetActive(false);
             flameParticle.Stop();
+            flameIterator = 0;
         }
 
         if (heat <= 0)
@@ -75,5 +87,23 @@ public class FlamethrowerController : MonoBehaviour
         yield return new WaitForSeconds(cooldown);
         isOverheated = false;
         Debug.Log("Cooling finished");
+    }
+
+    IEnumerator WaitForAudio()
+    {
+        AudioManager.instance.PlaySFX(flame2, transform, 1f);
+        yield return new WaitForSeconds(.734f);
+        isFlaming = false;
+    }
+
+    void PlayFireAudio()
+    {
+        AudioManager.instance.PlaySFX(flame2, transform, 1f);
+        isFlaming=true;
+        StartCoroutine(WaitForAudio());
+        if (flameIterator == 3)
+        {
+            AudioManager.instance.PlaySFX(flame3, transform, 1f);
+        }
     }
 }
