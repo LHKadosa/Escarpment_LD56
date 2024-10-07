@@ -33,6 +33,16 @@ public class EnemyController : MonoBehaviour
         anim = gameObject.transform.GetChild(0).GetComponent<Animator>();
         anim.SetBool("IsMoving", false);
         NewTargetOffset();
+
+        if (SettingsManager.Instance.IsHardMode())
+        {
+            speed = 3f;
+        }
+        else
+        {
+            speed = 1f;
+        }
+        
     }
 
     void FixedUpdate()

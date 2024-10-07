@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class InitialDialogTrigger : MonoBehaviour
 {
     public DialogController dialogController;
+    [SerializeField] AudioClip dialog;
 
     void Start()
     {
@@ -17,5 +19,8 @@ public class InitialDialogTrigger : MonoBehaviour
         };
 
         dialogController.StartDialog(startDialog);
+
+        AudioManager.instance.PlaySFX(dialog, transform, 1f);
     }
+        
 }
