@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public Transform character;
     Rigidbody2D rb;
     private Animator anim;
+    public GameObject explodingParticle;
 
     [Header("Aggro")]
     [SerializeField] float aggroTriggerRadius;
@@ -143,6 +144,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
+        Instantiate(explodingParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         AudioManager.instance.PlaySFX(enemy1Explosion, transform, 1f);
     }
 }
