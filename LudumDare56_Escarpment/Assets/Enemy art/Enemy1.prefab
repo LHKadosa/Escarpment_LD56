@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6215b5bab9fa9f4e840fe17d297a8c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  speed: 5
+  health: 50
+  speed: 4
   character: {fileID: 0}
   aggroTriggerRadius: 7
   attackRange: 2
@@ -272,8 +272,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0162bcec7ddceb847975a64f43a28622, type: 3}
-  m_Color: {r: 0.9150943, g: 0.31510323, b: 0.31510323, a: 1}
+  m_Sprite: {fileID: -441742990, guid: a68e2e324abd25a469e253220f894143, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1

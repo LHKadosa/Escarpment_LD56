@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.freezeRotation = true;
+        rb.freezeRotation = false;
     }
 
     void FixedUpdate()
