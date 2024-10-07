@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Scientist : MonoBehaviour
 {
     [SerializeField] AudioClip victory;
+
+    public static event Action<bool, GameScore> OnGameVictory;
 
     void FixedUpdate()
     {
@@ -17,6 +18,14 @@ public class Scientist : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             AudioManager.instance.PlaySFX(victory, transform, .4f);
+
+            GameScore score = new GameScore
+            {
+                score = null, 
+                timeTaken = Time.time,
+            };
+
+            OnGameVictory?.Invoke(false, score);
         }
     }
 }
