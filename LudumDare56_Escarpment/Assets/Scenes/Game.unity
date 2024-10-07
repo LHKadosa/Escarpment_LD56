@@ -585,6 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endGameMenu: {fileID: 1487213894}
+  dialogController: {fileID: 1414887504}
   title: {fileID: 1865290329}
   score: {fileID: 402273403}
   winMessage: Mission completed!
