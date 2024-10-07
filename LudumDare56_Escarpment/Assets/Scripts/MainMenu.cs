@@ -80,6 +80,12 @@ public class MainMenu : MonoBehaviour
         settingsMenuAnimator.SetBool("openSettings", !isOpened);
     }
 
+    public void ShowCredits()
+    {
+        // TODO: implement
+        Debug.Log("Show credits");
+    }
+    
     public void GoToMainMenu()
     {
         Time.timeScale = 1f; // Make sure the game is not paused before changing scenes
