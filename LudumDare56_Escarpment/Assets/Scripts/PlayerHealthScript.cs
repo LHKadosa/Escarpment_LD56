@@ -21,7 +21,6 @@ public class PlayerHealthScript : MonoBehaviour
     void Start()
     {
         maxHealth = health;
-        healthBar = GameObject.FindGameObjectWithTag("HealthUI").GetComponentInChildren<Image>();
     }
 
     void FixedUpdate()
@@ -29,7 +28,6 @@ public class PlayerHealthScript : MonoBehaviour
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
         if (health <= 0)
         {
-            Destroy(this.gameObject);
 
             GameScore score = new GameScore
             {
@@ -40,6 +38,8 @@ public class PlayerHealthScript : MonoBehaviour
             OnGameEnd?.Invoke(false, score);
 
             AudioManager.instance.PlaySFX(die, transform, 1f);
+            Time.timeScale = 0f;
+            Destroy(this.gameObject);
         }
     }
 

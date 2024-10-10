@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(AudioClip audioClip, Transform targetTransform, float volume)
     {
-        AudioSource audioSource = Instantiate(soundFXSource, targetTransform.position, Quaternion.identity);
+        AudioSource audioSource = Instantiate(soundFXSource, targetTransform.position, Quaternion.identity, instance.transform);
 
         audioSource.clip = audioClip;
 

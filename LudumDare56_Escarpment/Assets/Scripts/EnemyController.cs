@@ -143,6 +143,9 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        AudioManager.instance.PlaySFX(enemy1Explosion, transform, 1f);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(enemy1Explosion, transform, 1f);
+        }
     }
 }
