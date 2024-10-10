@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("S_Kadosa_LevelDesign");
     }
 
     public void ToggleSettingsMenu()
