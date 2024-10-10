@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using System.Collections;
+
 
 
 #if UNITY_EDITOR
@@ -67,6 +69,12 @@ public class MainMenu : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        StartCoroutine(RestartGameAsync());
+    }
+
+    IEnumerator RestartGameAsync()
+    {
+        yield return Resources.UnloadUnusedAssets();
         SceneManager.LoadScene("S_Kadosa_LevelDesign");
     }
 

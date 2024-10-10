@@ -8,6 +8,11 @@ public class InitialDialogTrigger : MonoBehaviour
     public DialogController dialogController;
     [SerializeField] AudioClip dialog;
 
+    void Awake()
+    {
+        Time.timeScale = 1f;
+    }
+
     void Start()
     {
         List<string> startDialog = new List<string>
