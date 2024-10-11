@@ -3662,7 +3662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 21.824, y: -57.7}
+  m_AnchoredPosition: {x: 21.824, y: -63}
   m_SizeDelta: {x: 302.96, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &114100620
@@ -3911,7 +3911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -83.969, y: 0}
+  m_AnchoredPosition: {x: -109, y: 0.5}
   m_SizeDelta: {x: 167.94, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &117260956
@@ -3936,8 +3936,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hard mode
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8530876f96817ae4c900285db12dee22, type: 2}
-  m_sharedMaterial: {fileID: 8908842602579979320, guid: 8530876f96817ae4c900285db12dee22, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 41c7b4c7a9274264799c61f4cd1456b8, type: 2}
+  m_sharedMaterial: {fileID: 457772274987658280, guid: 41c7b4c7a9274264799c61f4cd1456b8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3961,15 +3961,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -33475,6 +33475,7 @@ GameObject:
   - component: {fileID: 803489963}
   - component: {fileID: 803489965}
   - component: {fileID: 803489964}
+  - component: {fileID: 803489966}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -33542,6 +33543,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803489962}
   m_CullTransparentMesh: 1
+--- !u!95 &803489966
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803489962}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d09745bea72baf468bd025e42c3bc38, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &808816123
 GameObject:
   m_ObjectHideFlags: 0
@@ -65547,6 +65569,7 @@ MonoBehaviour:
   gameScene: {fileID: 102900000, guid: e3c8df7df7c096e458fe6832c44f2051, type: 3}
   mainMenuAnimator: {fileID: 1158516867}
   settingsMenuAnimator: {fileID: 226439933}
+  pauseMenuAnimator: {fileID: 803489966}
   settingsMenu: {fileID: 226439930}
   pauseMenuUI: {fileID: 803489962}
 --- !u!4 &1294208155

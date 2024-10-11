@@ -49,6 +49,11 @@ public class SettingsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (audioMixer == null)
+        {
+            audioMixer = Resources.Load<AudioMixer>("Assets/Audio/MainMixer.mixer");
+        }
     }
 
     public void SetSoundsVolume(int newVolume)

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 using System.Collections;
 
 
@@ -16,6 +15,7 @@ public class MainMenu : MonoBehaviour
 #endif
     public Animator mainMenuAnimator;
     public Animator settingsMenuAnimator;
+    public Animator pauseMenuAnimator;
     public GameObject settingsMenu;
     public GameObject pauseMenuUI;
     private bool isPaused = false;
@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenuUI.SetActive(false);
+        pauseMenuAnimator.SetBool("openPauseMenu", false);
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -62,6 +63,7 @@ public class MainMenu : MonoBehaviour
     public void PauseGame()
     {
         pauseMenuUI.SetActive(true);
+        pauseMenuAnimator.SetBool("openPauseMenu", true);
         Time.timeScale = 0f;
         isPaused = true;
     }
