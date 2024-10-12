@@ -15,6 +15,7 @@ public class EnemyHealth : MonoBehaviour
         if (hitCount >= maxHealth)
         {
             Instantiate(explodingParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            GameScore.destroyedEnemies++;
             Destroy(this.gameObject);
         }
     }

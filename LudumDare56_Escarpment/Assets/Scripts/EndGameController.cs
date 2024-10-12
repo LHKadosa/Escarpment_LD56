@@ -13,14 +13,19 @@ public class EndGameController : MonoBehaviour
     [SerializeField] string winMessage = "Mission completed!";
     [SerializeField] string loseMessage = "Game Over...";
 
+    private int totalEnemies;
+
     private void OnEnable()
     {
         PlayerHealthScript.OnGameEnd += ShowMenu;
+        Scientist.OnGameVictory += ShowMenu;
+        totalEnemies = GameObject.FindGameObjectsWithTag("Enemy1").Length;
     }
 
     private void OnDisable()
     {
         PlayerHealthScript.OnGameEnd -= ShowMenu;
+        Scientist.OnGameVictory -= ShowMenu;
     }
 
     public void ShowMenu(bool hasWon, GameScore gameScore)
@@ -40,6 +45,7 @@ public class EndGameController : MonoBehaviour
             ShowScore(gameScore);
         }
 
+        GameScore.destroyedEnemies = 0;
         endGameMenu.SetActive(true);
     }
 
@@ -66,7 +72,12 @@ public class EndGameController : MonoBehaviour
 
         if (gameScore.score.HasValue)
         {
-            displayText += $"Score: {gameScore.score.Value}\n";
+            
+            float percentage = (float)gameScore.score.Value / totalEnemies * 100;
+            string rank = GetRankBasedOnPercentage(percentage);
+
+            displayText += $"Criatures burnt: {gameScore.score.Value}/{totalEnemies}\n";
+            displayText += $"Rank: {rank}\n";
         }
 
         if (gameScore.timeTaken.HasValue)
@@ -75,5 +86,13 @@ public class EndGameController : MonoBehaviour
         }
 
         score.text = displayText.TrimEnd();
+    }
+
+    private string GetRankBasedOnPercentage(float percentage)
+    {
+        if (percentage >= 100) return "Perfect";
+        else if (percentage >= 75) return "Great";
+        else if (percentage >= 50) return "Good";
+        else return "Poor";
     }
 }

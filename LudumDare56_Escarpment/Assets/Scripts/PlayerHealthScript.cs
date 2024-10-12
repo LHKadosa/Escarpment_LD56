@@ -31,7 +31,7 @@ public class PlayerHealthScript : MonoBehaviour
 
             GameScore score = new GameScore
             {
-                score = null, // TODO: implement score system ?
+                score = GameScore.destroyedEnemies,
                 timeTaken = Time.time,
             };
             

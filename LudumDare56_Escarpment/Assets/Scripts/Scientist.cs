@@ -21,7 +21,7 @@ public class Scientist : MonoBehaviour
 
             GameScore score = new GameScore
             {
-                score = null, 
+                score = GameScore.destroyedEnemies, 
                 timeTaken = Time.time,
             };
 
