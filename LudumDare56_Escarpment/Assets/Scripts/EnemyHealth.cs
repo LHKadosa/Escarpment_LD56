@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth;
+    public GameObject explodingParticle;
+
     int hitCount = 0;
     private void OnParticleCollision(GameObject other)
     {
@@ -12,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log("Hits taken" + hitCount);
         if (hitCount >= maxHealth)
         {
+            Instantiate(explodingParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

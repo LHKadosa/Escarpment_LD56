@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  explodingParticle: {fileID: 8360234052285739408, guid: b107f713748cef143a952fdf5b7f32da, type: 3}
 --- !u!114 &7103140911343966649
 MonoBehaviour:
   m_ObjectHideFlags: 0

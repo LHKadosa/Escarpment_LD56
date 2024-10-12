@@ -60,7 +60,10 @@ public class SettingsManager : MonoBehaviour
     {
         soundsVolume = newVolume;
         OnSoundsVolumeChanged?.Invoke(soundsVolume);
-        audioMixer.SetFloat("SFXVolume", soundsVolume);
+        if (audioMixer != null)
+        {
+            audioMixer.SetFloat("SFXVolume", soundsVolume);
+        }
     }
     
     public void SetMusicVolume(int newVolume)
